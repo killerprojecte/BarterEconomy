@@ -1,0 +1,12 @@
+#Supported Database Software (mysql/sqlite)
+database: sqlite
+#Settings for MySQL
+mysql:
+  host: 127.0.0.1:3306
+  database: "bartereco"
+  user: bartereco
+  password: "barter-economy"
+  max-lifetime: 1800000
+  minimum-idle: 8
+  maximum-pool-size: 20
+  ssl: false
