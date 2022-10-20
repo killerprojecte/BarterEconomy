@@ -35,8 +35,8 @@ public class AdminCommand implements CommandExecutor {
                         sender.sendMessage(Color.color(BarterEconomy.message.getString("lookall").replace("%player%",player.getName())));
                         PlayerDTO data = BarterEconomy.sqlData.getData(player.getUniqueId());
                         for (String type : data.getData().data.keySet()){
-                            sender.sendMessage(Color.color(BarterEconomy.message.getString("lookall-info".replace("%type%",type)
-                                    .replace("%amount%",String.valueOf(data.getData().data.get(type))))));
+                            sender.sendMessage(Color.color(BarterEconomy.message.getString("lookall-info").replace("%type%",type)
+                                    .replace("%amount%",String.valueOf(data.getData().data.get(type)))));
                         }
                     } else {
                         sender.sendMessage(Color.color(BarterEconomy.message.getString("notfound")));
@@ -103,10 +103,10 @@ public class AdminCommand implements CommandExecutor {
                         list.data.put(type,amount);
                         data.setData(list);
                         BarterEconomy.sqlData.createOrUpdate(data);
-                        sender.sendMessage(Color.color(BarterEconomy.message.getString("set"
+                        sender.sendMessage(Color.color(BarterEconomy.message.getString("set")
                                 .replace("%player%",player.getName())
                                 .replace("%type%",type)
-                                .replace("%amount%",String.valueOf(amount)))));
+                                .replace("%amount%",String.valueOf(amount))));
                     } else {
                         sender.sendMessage(Color.color(BarterEconomy.message.getString("notfound")));
                     }
