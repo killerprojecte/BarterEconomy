@@ -4,6 +4,8 @@ main: org.fastmcmirror.bartereco.BarterEconomy
 api-version: 1.13
 authors: [ FlyProject ]
 description: Trade with others using your items
+softdepend:
+  - PlaceholderAPI
 commands:
   beco:
     permission: bartereconomy.use

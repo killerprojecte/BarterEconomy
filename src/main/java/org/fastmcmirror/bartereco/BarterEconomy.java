@@ -12,6 +12,7 @@ import org.fastmcmirror.bartereco.database.MySQLData;
 import org.fastmcmirror.bartereco.database.SQLData;
 import org.fastmcmirror.bartereco.database.SQLiteData;
 import org.fastmcmirror.bartereco.listeners.PlayerListener;
+import org.fastmcmirror.bartereco.utils.PlaceholderHook;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -44,10 +45,13 @@ public final class BarterEconomy extends JavaPlugin {
                         sqlData.createOrUpdate(playerDTO);
                     }
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new PlaceholderHook().register();
+        }
         // Plugin startup logic
 
     }

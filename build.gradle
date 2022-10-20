@@ -20,6 +20,9 @@ repositories {
         url 'https://repo.clojars.org'
         name 'Clojars'
     }
+    maven {
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
 }
 
 dependencies {
@@ -29,6 +32,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'org.xerial:sqlite-jdbc:3.39.3.0'
     compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
+    compileOnly 'me.clip:placeholderapi:2.11.2'
 }
 
 def targetJavaVersion = 8
