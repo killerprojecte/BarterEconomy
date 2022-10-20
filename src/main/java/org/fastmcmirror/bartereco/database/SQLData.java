@@ -11,24 +11,24 @@ import java.util.List;
 import java.util.UUID;
 
 public abstract class SQLData {
-    protected abstract ConnectionSource getConnectionSource() throws SQLException;
     public static Dao<PlayerDTO, UUID> playerDTOs;
-    private final ConnectionSource connectionSource;
     private static SQLData instance;
-
-    public static SQLData getInstance(){
-        return instance;
-    }
-
+    private final ConnectionSource connectionSource;
 
     public SQLData() throws SQLException {
         instance = this;
         connectionSource = getConnectionSource();
-        playerDTOs = DaoManager.createDao(connectionSource,PlayerDTO.class);
-        if (!playerDTOs.isTableExists()){
-            TableUtils.createTable(this.connectionSource,PlayerDTO.class);
+        playerDTOs = DaoManager.createDao(connectionSource, PlayerDTO.class);
+        if (!playerDTOs.isTableExists()) {
+            TableUtils.createTable(this.connectionSource, PlayerDTO.class);
         }
     }
+
+    public static SQLData getInstance() {
+        return instance;
+    }
+
+    protected abstract ConnectionSource getConnectionSource() throws SQLException;
 
     public List<PlayerDTO> queryAll() throws SQLException {
         return playerDTOs.queryForAll();
@@ -46,7 +46,7 @@ public abstract class SQLData {
         return playerDTOs.idExists(uuid);
     }
 
-    public void close(){
+    public void close() {
         connectionSource.closeQuietly();
     }
 }

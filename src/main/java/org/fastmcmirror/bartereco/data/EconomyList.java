@@ -6,5 +6,5 @@ import java.util.Map;
 
 public class EconomyList {
     @SerializedName("data")
-    public Map<String,Integer> data;
+    public Map<String, Integer> data;
 }

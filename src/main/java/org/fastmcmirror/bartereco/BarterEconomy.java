@@ -26,17 +26,17 @@ public final class BarterEconomy extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        saveResource("messages.yml",false);
+        saveResource("messages.yml", false);
         saveDefaultConfig();
         instance = this;
         loadMessage();
         loadSQL();
-        Bukkit.getPluginManager().registerEvents(new PlayerListener(),this);
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         getCommand("beco").setExecutor(new AdminCommand());
-        Bukkit.getScheduler().runTaskAsynchronously(this,() -> {
+        Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
             try {
-                for (Player player : Bukkit.getOnlinePlayers()){
-                    if (!sqlData.hasPlayer(player.getUniqueId())){
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (!sqlData.hasPlayer(player.getUniqueId())) {
                         PlayerDTO playerDTO = new PlayerDTO();
                         EconomyList list = new EconomyList();
                         list.data = new HashMap<>();
@@ -56,8 +56,8 @@ public final class BarterEconomy extends JavaPlugin {
 
     }
 
-    public void loadSQL(){
-        if (getConfig().getString("database").equals("mysql")){
+    public void loadSQL() {
+        if (getConfig().getString("database").equals("mysql")) {
             try {
                 sqlData = new MySQLData();
             } catch (SQLException e) {
@@ -75,7 +75,7 @@ public final class BarterEconomy extends JavaPlugin {
         }
     }
 
-    public void loadMessage(){
+    public void loadMessage() {
         message = YamlConfiguration.loadConfiguration(new File(getDataFolder() + "/messages.yml"));
     }
 

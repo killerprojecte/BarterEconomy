@@ -12,9 +12,9 @@ import java.util.HashMap;
 
 public class PlayerListener implements Listener {
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
+    public void onJoin(PlayerJoinEvent event) {
         try {
-            if (!BarterEconomy.sqlData.hasPlayer(event.getPlayer().getUniqueId())){
+            if (!BarterEconomy.sqlData.hasPlayer(event.getPlayer().getUniqueId())) {
                 PlayerDTO playerDTO = new PlayerDTO();
                 EconomyList list = new EconomyList();
                 list.data = new HashMap<>();

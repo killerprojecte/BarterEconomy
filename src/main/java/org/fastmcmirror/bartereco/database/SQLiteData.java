@@ -7,7 +7,7 @@ import org.fastmcmirror.bartereco.BarterEconomy;
 import java.io.File;
 import java.sql.SQLException;
 
-public class SQLiteData extends SQLData{
+public class SQLiteData extends SQLData {
     public SQLiteData() throws SQLException {
         super();
     }
