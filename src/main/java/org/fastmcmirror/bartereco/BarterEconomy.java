@@ -12,6 +12,7 @@ import org.fastmcmirror.bartereco.database.MySQLData;
 import org.fastmcmirror.bartereco.database.SQLData;
 import org.fastmcmirror.bartereco.database.SQLiteData;
 import org.fastmcmirror.bartereco.listeners.PlayerListener;
+import org.fastmcmirror.bartereco.utils.Color;
 import org.fastmcmirror.bartereco.utils.PlaceholderHook;
 
 import java.io.File;
@@ -31,6 +32,19 @@ public final class BarterEconomy extends JavaPlugin {
         instance = this;
         loadMessage();
         loadSQL();
+        printLogo("\n" +
+                "                                             \n" +
+                "─────────────────────────────────────────────\n" +
+                "                                             \n" +
+                "╔╗ ┌─┐┬─┐┌┬┐┌─┐┬─┐╔═╗┌─┐┌─┐┌┐┌┌─┐┌┬┐┬ ┬      \n" +
+                "╠╩╗├─┤├┬┘ │ ├┤ ├┬┘║╣ │  │ │││││ ││││└┬┘      \n" +
+                "╚═╝┴ ┴┴└─ ┴ └─┘┴└─╚═╝└─┘└─┘┘└┘└─┘┴ ┴ ┴       \n" +
+                "                                             \n" +
+                "─────────────────────────────────────────────\n" +
+                "                                             \n" +
+                "Version: " + getDescription().getVersion() + "\n" +
+                "BarterEconomy by FastMCMirror Organization\n" +
+                "Offical-Website: https://fastmcmirror.org\n");
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         getCommand("beco").setExecutor(new AdminCommand());
         Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
@@ -83,5 +97,12 @@ public final class BarterEconomy extends JavaPlugin {
     public void onDisable() {
         sqlData.close();
         // Plugin shutdown logic
+    }
+
+    public void printLogo(String logo) {
+        String[] s = logo.split("\n");
+        for (String l : s) {
+            getLogger().info(Color.color(l));
+        }
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'maven-publish'
 }
 
 group = 'org.fastmcmirror'
@@ -62,8 +63,28 @@ processResources {
 
 
 shadowJar {
-    relocate("com.j256.ormlite","org.fastmcmirror.bartereco.ormlite")
-    relocate("com.zaxxer.hikari","org.fastmcmirror.bartereco.hikari")
-    relocate("com.google.gson","org.fastmcmirror.bartereco.gson")
+    relocate("com.j256.ormlite", "org.fastmcmirror.bartereco.ormlite")
+    relocate("com.zaxxer.hikari", "org.fastmcmirror.bartereco.hikari")
+    relocate("com.google.gson", "org.fastmcmirror.bartereco.gson")
     archiveName("BarterEconomy.jar")
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId "org.fastmcmirror"
+            artifactId "BarterEconomy"
+            version this.version
+            artifact shadowJar
+        }
+    }
+    repositories {
+        maven {
+            url = "https://repo.fastmcmirror.org/content/repositories/releases/"
+            credentials {
+                username System.getenv("USERNAME")
+                password System.getenv("PASSWORD")
+            }
+        }
+    }
 }
