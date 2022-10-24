@@ -5,6 +5,8 @@ import org.fastmcmirror.bartereco.BarterEconomy;
 import org.fastmcmirror.bartereco.data.EconomyList;
 import org.fastmcmirror.bartereco.data.PlayerDTO;
 
+import java.util.HashMap;
+
 public class BarterEconomyAPI {
     public static boolean has(OfflinePlayer player, String type, int amount) {
         try {
@@ -77,7 +79,8 @@ public class BarterEconomyAPI {
         try {
             PlayerDTO data = new PlayerDTO();
             data.setUUID(player.getUniqueId());
-            EconomyList list = data.getData();
+            EconomyList list = new EconomyList();
+            list.data = new HashMap<>();
             list.data.put(type, amount);
             data.setData(list);
             BarterEconomy.sqlData.createOrUpdate(data);

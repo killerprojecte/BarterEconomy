@@ -10,6 +10,8 @@ import org.fastmcmirror.bartereco.data.EconomyList;
 import org.fastmcmirror.bartereco.data.PlayerDTO;
 import org.fastmcmirror.bartereco.utils.Color;
 
+import java.util.HashMap;
+
 public class AdminCommand implements CommandExecutor {
     private static void sendHelp(CommandSender sender) {
         sender.sendMessage(Color.color("&6&lBarterEconomy &7by FlyProject"));
@@ -111,7 +113,8 @@ public class AdminCommand implements CommandExecutor {
                     if (BarterEconomy.sqlData.hasPlayer(player.getUniqueId())) {
                         PlayerDTO data = new PlayerDTO();
                         data.setUUID(player.getUniqueId());
-                        EconomyList list = data.getData();
+                        EconomyList list = new EconomyList();
+                        list.data = new HashMap<>();
                         list.data.put(type, amount);
                         data.setData(list);
                         BarterEconomy.sqlData.createOrUpdate(data);
