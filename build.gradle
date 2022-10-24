@@ -21,8 +21,7 @@ repositories {
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
     maven {
-        url 'https://repo.clojars.org'
-        name 'Clojars'
+        url 'https://repo.fastmcmirror.org/content/groups/public/'
     }
     maven {
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
