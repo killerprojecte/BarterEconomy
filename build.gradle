@@ -1,3 +1,6 @@
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
@@ -62,12 +65,24 @@ processResources {
     }
 }
 
+tasks.shadowJar {
+    archiveClassifier = ""
+}
+
 
 shadowJar {
     relocate("com.j256.ormlite", "org.fastmcmirror.bartereco.ormlite")
     relocate("com.zaxxer.hikari", "org.fastmcmirror.bartereco.hikari")
     relocate("com.google.gson", "org.fastmcmirror.bartereco.gson")
-    archiveName("BarterEconomy.jar")
+    archiveName("BarterEconomy-${version}.jar")
+}
+
+tasks.shadowJar.finalizedBy {
+    copy()
+}
+
+def void copy() {
+    Files.copy(new File(System.getProperty("user.dir") + "/build/libs/BarterEconomy-${version}.jar").toPath(), new File(System.getProperty("user.dir") + "/build/libs/BarterEconomy.jar").toPath(), StandardCopyOption.REPLACE_EXISTING)
 }
 
 publishing {
