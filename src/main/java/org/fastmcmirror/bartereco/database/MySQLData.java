@@ -18,7 +18,7 @@ public class MySQLData extends SQLData {
     protected ConnectionSource getConnectionSource() throws SQLException {
         int minimumIdle;
         HikariConfig config = new HikariConfig();
-        config.setPoolName("magicsync-hikari");
+        config.setPoolName("bartereconomy-mysql");
         boolean ssl = BarterEconomy.instance.getConfig().getBoolean("mysql.ssl");
         String url = "jdbc:mysql://" + BarterEconomy.instance.getConfig().getString("mysql.host") + "/" +
                 BarterEconomy.instance.getConfig().getString("mysql.database") + "?useSSL=" + ssl + "&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&characterEncoding=utf8";
